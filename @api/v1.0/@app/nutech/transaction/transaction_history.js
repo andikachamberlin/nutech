@@ -10,7 +10,7 @@ router.get('/', async (request, response) => {
 
     try {
 
-        const data = await runQuery('SELECT service_code, service_name, service_icon, service_tariff FROM services', []);
+        const data = await runQuery('SELECT service_code, service_name, service_icon, service_tariff FROM tran', []);
         
         response.status(200).json({
             "status": 0,

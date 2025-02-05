@@ -1,6 +1,7 @@
 const Entities = require('html-entities').AllHtmlEntities;
 const entities = new Entities();
 const jwt = require("jsonwebtoken");
+const datetime = require('node-datetime');
 
 function capitalizeAndFormat(str) {
     return str
@@ -61,10 +62,54 @@ function isValidNumber(value) {
     }
 }
 
+const dynamicDateTime = {
+    get yearNow() {
+        return new Date().getFullYear();
+    },
+    get monthNow() {
+        return new Date().getMonth() + 1;
+    },
+    get todayNow() {
+        return new Date().getDate();
+    },
+    get hourNow() {
+        return datetime.create().format('H');
+    },
+    get minuteNow() {
+        return datetime.create().format('M');
+    },
+    get secondNow() {
+        return datetime.create().format('S');
+    },
+    get dateNow() {
+        const date = new Date();
+        return `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`;
+    },
+    get dateFilter() {
+        return new Date().toLocaleDateString("en-GB", {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+        });
+    },
+};
+
+function convertDate(string) {
+
+	tanggal = string.split("/")[0];
+	bulan = string.split("/")[1];
+	tahun = string.split("/")[2];
+
+	return tanggal + "" + bulan + "" + tahun;
+}
+
+
 module.exports = {
 	generateToken,
 	capitalizeAndFormat,
 	checkRequired,
 	emailValidator,
-    isValidNumber
+    isValidNumber,
+    dynamicDateTime,
+    convertDate
 };
