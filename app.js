@@ -220,22 +220,22 @@ const allowedUserAgents = [
 ];
 
 // Middleware untuk memvalidasi User-Agent
-if(process.env.ENV_PRODUCTION === 'true' ){
-	app.use((req, res, next) => {
-		const userAgent = req.useragent;
+// if(process.env.ENV_PRODUCTION === 'true' ){
+// 	app.use((req, res, next) => {
+// 		const userAgent = req.useragent;
 	
-		// Cek apakah User-Agent ada dalam daftar yang diizinkan
-		const isAllowed = allowedUserAgents.some(agent => userAgent.source.includes(agent));
+// 		// Cek apakah User-Agent ada dalam daftar yang diizinkan
+// 		const isAllowed = allowedUserAgents.some(agent => userAgent.source.includes(agent));
 	
-		if (isAllowed) {
-			next(); // Lanjutkan ke route berikutnya
-		} else {
-			res.status(403).json({
-				error: "Access Denied"
-			});
-		}
-	});
-}
+// 		if (isAllowed) {
+// 			next(); // Lanjutkan ke route berikutnya
+// 		} else {
+// 			res.status(403).json({
+// 				error: "Access Denied"
+// 			});
+// 		}
+// 	});
+// }
 /*------------------------------------------------------------------
 [End User Agent]
 -------------------------------------------------------------------*/
