@@ -64,7 +64,11 @@ router.put('/', async (request, response) => {
             console.log('Form parsing complete');
 
             if (!uploadedFile) {
-                return response.status(400).json({ status: 1, message: 'No file uploaded' });
+                return response.status(400).json({
+                    "status": 102,
+                    "message": "Format Image tidak sesuai",
+                    "data": null
+                });
             }
 
             try {
