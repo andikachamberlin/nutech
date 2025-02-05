@@ -53,9 +53,18 @@ async function generateToken(auth) {
     }
 }
 
+function isValidNumber(value) {
+    if (typeof value === 'number' && !isNaN(value) && value >= 0) {
+        return value;
+    } else {
+        return 'denied';
+    }
+}
+
 module.exports = {
 	generateToken,
 	capitalizeAndFormat,
 	checkRequired,
-	emailValidator
+	emailValidator,
+    isValidNumber
 };

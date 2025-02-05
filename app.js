@@ -483,6 +483,22 @@ const app_nutech_membership_profile_image = require('./@api/v1.0/@app/nutech/mem
 app.use('/profile', verify, app_nutech_membership_profile_index);
 app.use('/profile/update', verify, app_nutech_membership_profile_update);
 app.use('/profile/image', verify, app_nutech_membership_profile_image);
+
+const app_nutech_information_banner = require('./@api/v1.0/@app/nutech/information/banner');
+const app_nutech_information_services = require('./@api/v1.0/@app/nutech/information/services');
+
+app.use('/banner', app_nutech_information_banner);
+app.use('/services', verify, app_nutech_information_services);
+
+const app_nutech_transaction_balance = require('./@api/v1.0/@app/nutech/transaction/balance');
+const app_nutech_transaction_topup = require('./@api/v1.0/@app/nutech/transaction/topup');
+const app_nutech_transaction = require('./@api/v1.0/@app/nutech/transaction/transaction');
+const app_nutech_transaction_history = require('./@api/v1.0/@app/nutech/transaction/transaction_history');
+
+app.use('/balance', verify, app_nutech_transaction_balance);
+app.use('/topup', verify, app_nutech_transaction_topup);
+app.use('/transaction', verify, app_nutech_transaction);
+app.use('/transaction_history', verify, app_nutech_transaction_history);
 /*------------------------------------------------------------------
 [End Routes]
 -------------------------------------------------------------------*/
