@@ -34,9 +34,9 @@ router.post('/', async (request, response) => {
 
         const [balance] = await runQuery('SELECT balance FROM user WHERE email=?', [verify.email]);
 
-        const count_fix = count.count === 0 ? 1 : count.count + 1;
+        const count_fix = count.count === 0 ? 1 : Number(count.count) + 1;
         const formatted_number = `INV${convertDate(dynamicDateTime.dateFilter)}` + '-' + sprintf("%03d", count_fix);
-        if (balance.balance < 0) {
+        if (balance.balance < service.service_tariff) {
             return response.status(400).json({
                 error: 'Balance Tidak Cukup'
             })
