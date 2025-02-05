@@ -11,6 +11,7 @@
   "description": "",
   "dependencies": {
     "@sentry/node": "^7.54.0",
+    "busboy": "^1.6.0",
     "cloudflare-express": "^1.0.1",
     "compression": "^1.7.4",
     "cookie-parser": "^1.4.6",

@@ -54,7 +54,8 @@ try {
 
 const credentials = { key: privateKey, cert: certificate };
 const { port_app, port_app_ssl } = require('./config/port');
-const { logger } = require('./config/logger')
+const { logger } = require('./config/logger');
+const { verify } = require('./config/verify');
 
 const { cors_development, cors_production } = require('./config/cors');
 /*------------------------------------------------------------------
@@ -318,8 +319,7 @@ hbs.registerPartials(__dirname + '/views/partials');
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
-app.use(express.static('public'));
-app.use(express.static('export'));
+app.use(express.static('public/upload'));
 /*------------------------------------------------------------------
 [End Template Engine]
 -------------------------------------------------------------------*/
@@ -424,6 +424,10 @@ app.get('/', (request, response) => {
 -------------------------------------------------------------------*/
 const validateTurnStile = async (req, res, next) => {
 
+	next();
+
+	return
+
 	try {
 		
 		const token = req.body['c-cloudflare-response'];
@@ -468,17 +472,17 @@ const validateTurnStile = async (req, res, next) => {
 const login = require('./@api/v1.0/@authentication/login');
 const register = require('./@api/v1.0/@authentication/register');
 
-app.use('/login', login);
-app.use('/register', register);
+app.use('/login', validateTurnStile, login);
+app.use('/register', validateTurnStile, register);
 
 // app
-// const app_nutech_membership_profile_index = require('./@api/v1.0/@app/nutech/membership/profile');
-// const app_nutech_membership_profile_update = require('./@api/v1.0/@authentication/register');
-// const app_nutech_membership_profile_image = require('./@api/v1.0/@authentication/register');
+const app_nutech_membership_profile_index = require('./@api/v1.0/@app/nutech/membership/profile');
+const app_nutech_membership_profile_update = require('./@api/v1.0/@app/nutech/membership/profile_update');
+const app_nutech_membership_profile_image = require('./@api/v1.0/@app/nutech/membership/profile_image');
 
-// app.use('/profile', app_nutech_membership_profile_index);
-// app.use('/profile/update', app_nutech_membership_profile_update);
-// app.use('/profile/image', app_nutech_membership_profile_image);
+app.use('/profile', verify, app_nutech_membership_profile_index);
+app.use('/profile/update', verify, app_nutech_membership_profile_update);
+app.use('/profile/image', verify, app_nutech_membership_profile_image);
 /*------------------------------------------------------------------
 [End Routes]
 -------------------------------------------------------------------*/

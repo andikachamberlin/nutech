@@ -37,7 +37,7 @@ router.post('/', async (request, response) => {
 
         const password_hash = CryptoJS.SHA256(password).toString(CryptoJS.enc.Hex)
 
-        const user = await runQuery('SELECT level, access, email FROM user WHERE email = ? AND password =?', [email, password_hash]);
+        const user = await runQuery('SELECT id, level, access, email FROM user WHERE email = ? AND password =?', [email, password_hash]);
 
         if (user.length === 0) { 
             return response.status(401).json({
@@ -48,6 +48,7 @@ router.post('/', async (request, response) => {
         }
 
         let auth = {
+            id: user[0].id,
             level: user[0].level,
             access: user[0].access,
             email: user[0].email,
