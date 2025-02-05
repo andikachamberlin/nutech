@@ -39,6 +39,19 @@ function checkRequired(body, fields) {
     return null; // Semua field valid
 }
 
+function checkRequiredNumber(body, fields) {
+    for (const field of fields) {
+        const rawValue = body[field]; // Ambil nilai asli
+        const value = Number(rawValue); // Ubah ke angka
+        
+        if (!rawValue || isNaN(value) || value < 0) {  
+            return capitalizeAndFormat(`${field} tidak boleh kosong atau negatif`);
+        }
+    }
+    return null; // Semua field valid
+}
+
+
 async function generateToken(auth) {
     try {
         const token = await new Promise((resolve, reject) => {
@@ -108,6 +121,7 @@ module.exports = {
 	generateToken,
 	capitalizeAndFormat,
 	checkRequired,
+    checkRequiredNumber,
 	emailValidator,
     isValidNumber,
     dynamicDateTime,

@@ -498,7 +498,7 @@ const app_nutech_transaction_history = require('./@api/v1.0/@app/nutech/transact
 app.use('/balance', verify, app_nutech_transaction_balance);
 app.use('/topup', verify, app_nutech_transaction_topup);
 app.use('/transaction', verify, app_nutech_transaction);
-app.use('/transaction_history', verify, app_nutech_transaction_history);
+app.use('/transaction/history', verify, app_nutech_transaction_history);
 /*------------------------------------------------------------------
 [End Routes]
 -------------------------------------------------------------------*/
