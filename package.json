@@ -1,0 +1,37 @@
+{
+  "name": "nutech",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@sentry/node": "^7.54.0",
+    "cloudflare-express": "^1.0.1",
+    "compression": "^1.7.4",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "crypto-js": "^4.0.0",
+    "dotenv": "^8.2.0",
+    "expect-ct": "^1.0.0",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.1.5",
+    "express-slow-down": "^2.0.3",
+    "express-timeout-handler": "^2.2.2",
+    "express-useragent": "^1.0.15",
+    "hbs": "^4.1.1",
+    "helmet": "^3.22.0",
+    "hpp": "^0.2.3",
+    "html-entities": "^1.3.1",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.0",
+    "mysql2": "^3.9.8",
+    "redis": "^3.0.2",
+    "toobusy-js": "^0.5.1",
+    "winston": "^3.3.3"
+  }
+}
